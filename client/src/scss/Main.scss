@@ -28,21 +28,46 @@ input {
   max-width: 960px;
   margin: 0 auto;
   display: block;
-  flex-wrap: wrap;
 
   .projects {
-    display: flex;
-    justify-content: space-between;
+    span { // ReactCSSTransitionGroup
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
 
-    .project {
-      max-width: 240px;
-      height: 240px;
-      margin: 10px;
-      background: whitesmoke;
-      flex: 1;
-      padding: 15px;
+      .project {
+        max-width: 220px;
+        height: 220px;
+        margin: 10px;
+        background: whitesmoke;
+        flex: 1;
+        padding: 15px;
 
 
+      }
     }
   }
+}
+
+// Transitions
+.project-enter {
+  opacity: 0.01;
+  // transform: scale(0);
+}
+
+.project-enter.project-enter-active {
+  opacity: 1;
+  // transform: scale(1);
+  transition: all 200ms ease-in-out;
+}
+
+.project-leave {
+  opacity: 1;
+  // transform: scale(1);
+}
+
+.project-leave.project-leave-active {
+  opacity: 0.01;
+  // transform: scale(0);
+  transition: all 200ms ease-in-out;
 }

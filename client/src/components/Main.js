@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Api from './Api';
 import '../scss/Main.scss';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 let MAX_PROJECTS = 40;
 
@@ -44,11 +45,16 @@ export default class Main extends Component {
           onChange={this.handleSearchInput}
           type="search"/>
         <div className="projects">
-          { this.state.projects.map((project, i) => (
+          <ReactCSSTransitionGroup
+            transitionName="project"
+            transitionEnterTimeout={500}
+            transitionLeaveTimeout={300}>
+            { this.state.projects.map((project, i) => (
 
-              <div className="project" key={i}>{project.name}</div>
-            ))
-          }
+                <div className="project" key={i}>{project.name}</div>
+              ))
+            }
+          </ReactCSSTransitionGroup>
         </div>
       </div>
     )
