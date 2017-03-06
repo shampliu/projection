@@ -3,9 +3,9 @@
 
 ### Todo
 Top Priority
-* MongoDB / Mongoose
-* fetch api
-* Redux? 
+* Redux?
+* make default display all projects
+* split into containers and components
 
 Second Priority
 * create separate Webpack config for server (transpile Babel, use babel.rc, look at MERN-starter)

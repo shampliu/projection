@@ -24,33 +24,21 @@ app.get('/', function (req, res) {
   res.render('index', { });
 });
 
-app.get('/all', function(req, res) {
-  Project.find({}, function (err, projects) {
-    if (err) throw err;
-
-    console.log("All projects: ", projects);
-    res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify(projects));
-  });
-});
-
 app.get('/projects', function(req, res) {
   const param = req.query.q;
 
-  if (!param) {
-    res.json({
-      error: 'Missing required parameter `q`',
+  if (!param) { // show all as default
+    Project.find({}, function(err, projects) {
+      res.send(JSON.stringify(projects));
     });
-    return;
+  } else {
+    Project.find({
+      name: { $regex: new RegExp(param, "ig") }
+    }, function(err, projects) {
+      console.log('Projects found matching', param, ':', projects);
+      res.send(JSON.stringify(projects));
+    })
   }
-
-  Project.find({
-    name: { $regex: new RegExp(param, "ig") }
-  }, function(err, projects) {
-    console.log('Projects found matching', param, ':', projects);
-    res.send(JSON.stringify(projects));
-
-  })
 })
 
 app.listen(3005, function() {
