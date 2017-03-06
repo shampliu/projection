@@ -24,7 +24,7 @@ app.get('/', function (req, res) {
   res.render('index', { });
 });
 
-app.get('/projects', function(req, res) {
+app.get('/all', function(req, res) {
   Project.find({}, function (err, projects) {
     if (err) throw err;
 
@@ -33,6 +33,25 @@ app.get('/projects', function(req, res) {
     res.send(JSON.stringify(projects));
   });
 });
+
+app.get('/projects', function(req, res) {
+  const param = req.query.q;
+
+  if (!param) {
+    res.json({
+      error: 'Missing required parameter `q`',
+    });
+    return;
+  }
+
+  Project.find({
+    name: { $regex: new RegExp(param, "ig") }
+  }, function(err, projects) {
+    console.log('Projects found matching', param, ':', projects);
+    res.send(JSON.stringify(projects));
+
+  })
+})
 
 app.listen(3005, function() {
   console.log('Server listening on port 3005');
