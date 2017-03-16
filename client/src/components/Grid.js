@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import Api from './Api';
-import '../scss/Main.scss';
+import '../scss/Grid.scss';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 let MAX_PROJECTS = 40;
 
-export default class Main extends Component {
+export default class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -38,12 +38,19 @@ export default class Main extends Component {
   render() {
     return (
       <div className="container">
-        <input
-          type='text'
-          placeholder='Search Projects'
-          value={this.state.keyword}
-          onChange={this.handleSearchInput}
-          type="search"/>
+        <div className="search-wrapper">
+          <form autoComplete="off">
+            {/* <label for="search">Just start typing...</label> */}
+            <input
+              id="search"
+              type='text'
+              placeholder='Search Projects'
+              value={this.state.keyword}
+              onChange={this.handleSearchInput}
+              autoComplete="off"
+              type="search"/>
+          </form>
+        </div>
         <div className="projects">
           <ReactCSSTransitionGroup
             transitionName="project"
@@ -51,7 +58,13 @@ export default class Main extends Component {
             transitionLeaveTimeout={300}>
             { this.state.projects.map((project, i) => (
 
-                <div className="project" key={i}>{project.name}</div>
+                <div className="project" key={i}>
+                  <div className="project-image"></div>
+                  <div className="project-info">
+                    <h3 className="project-name">{project.name}</h3>
+                    <p className="project-description">Lorem ipsum</p>
+                  </div>
+                </div>
               ))
             }
           </ReactCSSTransitionGroup>

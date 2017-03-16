@@ -1,0 +1,95 @@
+label {
+  color: #fff;
+}
+
+.search-wrapper {
+  position: fixed;
+  margin-top: 2em;
+
+  input#search {
+    background: transparent;
+    border: none;
+    width: 100%;
+    height: 100px;
+    border-radius: 12px;
+    font-size: 4em;
+    font-weight: bold;
+    padding-right: 0.8em;
+    // opacity: 0.4;
+    color: #fff;
+
+    &:focus, &:active {
+      outline: none;
+
+    }
+  }
+
+  input#search::-webkit-search-cancel-button {
+    display:none;
+  }
+}
+
+.projects {
+  padding-top: calc(2em + 100px);
+  span { // ReactCSSTransitionGroup
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    .project {
+      // max-width: 240px;
+      max-width: calc(33.33% - 20px);
+      height: 400px;
+      margin: 10px;
+      // background: whitesmoke;
+      flex: 1 1 calc(33.33% - 20px);
+
+      .project-image {
+        background-image: url('http://placehold.it/350x150');
+        background-size: cover;
+        background-position: center;
+        height: 300px;
+        width: 100%;
+      }
+      .project-info {
+        padding: 10px;
+
+        h3.project-name {
+          color: whitesmoke;
+          margin-bottom: 10px;
+          font-size: 1.4em;
+
+        }
+
+        .project-description {
+          color: white;
+        }
+      }
+
+
+    }
+  }
+}
+
+// Transitions
+.project-enter {
+  opacity: 0.01;
+  // transform: scale(0);
+}
+
+.project-enter.project-enter-active {
+  opacity: 1;
+  // transform: scale(1);
+  transition: all 200ms ease-in-out;
+}
+
+.project-leave {
+  opacity: 1;
+  // transform: scale(1);
+}
+
+.project-leave.project-leave-active {
+  opacity: 0.01;
+  // transform: scale(0);
+  transition: all 200ms ease-in-out;
+}

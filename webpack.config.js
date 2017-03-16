@@ -2,6 +2,7 @@
 
 // bundles CSS into separate file
 let ExtractTextPlugin = require('extract-text-webpack-plugin');
+let OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
   entry: [
@@ -18,6 +19,12 @@ module.exports = {
     ]
   },
   plugins: [
-    new ExtractTextPlugin({ filename: 'bundle.css', disable: false, allChunks: true })
+    new ExtractTextPlugin({ filename: 'bundle.css', disable: false, allChunks: true }),
+    new OptimizeCssAssetsPlugin({
+      assetNameRegExp: /\.css$/g,
+      cssProcessor: require('cssnano'),
+      cssProcessorOptions: { discardComments: {removeAll: true } },
+      canPrint: true
+    })
   ]
 };

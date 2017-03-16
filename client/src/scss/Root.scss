@@ -1,0 +1,33 @@
+@import "reset";
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background: rgb(17, 34, 66);
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  display: block;
+}
+
+.gradient-overlay {
+  position: fixed;
+  width: 100%;
+  height: 20vh;
+
+  &.top {
+    top: 0;
+    background: linear-gradient(to bottom, rgb(7, 15, 29) 5%, transparent 100%);
+  }
+
+  &.bottom {
+    bottom: 0;
+    background: linear-gradient(to top, rgb(7, 15, 29) 5%, transparent 100%);
+  }
+}

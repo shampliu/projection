@@ -6,9 +6,14 @@ Top Priority
 * Redux?
 * make default display all projects
 * split into containers and components
+* http://www.vanschneider.com/blog/
 
 Second Priority
 * create separate Webpack config for server (transpile Babel, use babel.rc, look at MERN-starter)
 * 404 page
 * use ESLint
 * use Yarn
+* pagination
+
+Later
+* webGL visualization of activity
