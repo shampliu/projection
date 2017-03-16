@@ -54,8 +54,8 @@ export default class Search extends Component {
         <div className="projects">
           <ReactCSSTransitionGroup
             transitionName="project"
-            transitionEnterTimeout={500}
-            transitionLeaveTimeout={300}>
+            transitionEnterTimeout={800}
+            transitionLeaveTimeout={800}>
             { this.state.projects.map((project, i) => (
 
                 <div className="project" key={i}>

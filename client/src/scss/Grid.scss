@@ -73,23 +73,23 @@ label {
 
 // Transitions
 .project-enter {
-  opacity: 0.01;
-  // transform: scale(0);
+  opacity: 0;
+  transform: translateY(-20px);
 }
 
 .project-enter.project-enter-active {
   opacity: 1;
-  // transform: scale(1);
+  transform: translateY(0px);
   transition: all 200ms ease-in-out;
 }
 
 .project-leave {
   opacity: 1;
-  // transform: scale(1);
+  transform: translateY(0px);
 }
 
 .project-leave.project-leave-active {
-  opacity: 0.01;
-  // transform: scale(0);
+  opacity: 0;
+  transform: translateY(20px);
   transition: all 200ms ease-in-out;
 }
