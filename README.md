@@ -1,8 +1,11 @@
 # Projection
 ## A MERN stack app that visualizes your projects.
 
+
+
 ### Todo
 Top Priority
+* debounce search query
 * Redux?
 * make default display all projects
 * split into containers and components
@@ -14,6 +17,7 @@ Second Priority
 * use ESLint
 * use Yarn
 * pagination
+* ESC key should clear search
 
 Later
 * webGL visualization of activity

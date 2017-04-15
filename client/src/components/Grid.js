@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
+import { debounce } from '../Util';
 import Api from './Api';
 import '../scss/Grid.scss';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 let MAX_PROJECTS = 40;
+
+
 
 export default class Search extends Component {
   constructor(props) {
@@ -14,24 +17,32 @@ export default class Search extends Component {
     }
 
     this.handleSearchInput = this.handleSearchInput.bind(this);
+    this.updateGrid = debounce(this.updateGrid.bind(this), 350);
+
   }
 
   componentDidMount() {
 
   }
 
+  updateGrid() {
+    Api.search(this.state.keyword, (projects) => {
+      this.setState({
+        projects: projects.slice(0, MAX_PROJECTS)
+      });
+    });
+
+  }
+
   handleSearchInput(e) {
     const keyword = e.target.value;
 
-    this.setState({ keyword }, () => { // no need for binding, arrow functions always use this value from enclosing scope
-      Api.search(this.state.keyword, (projects) => {
-        this.setState({
-          projects: projects.slice(0, MAX_PROJECTS)
-        });
-      });
-
-    });
+    this.setState({ keyword })
+    this.updateGrid(keyword);
   }
+
+
+
 
 
 
