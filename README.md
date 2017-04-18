@@ -5,8 +5,10 @@
 
 ### Todo
 Top Priority
-* debounce search query
-* Redux?
+* add isotope for grid 
+* hashHistory vs browserHistory
+* Redux
+  * add state for isLoading (on clicking filter)
 * make default display all projects
 * split into containers and components
 * http://www.vanschneider.com/blog/

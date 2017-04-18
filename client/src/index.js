@@ -1,11 +1,24 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Route, Router, IndexRoute, hashHistory } from 'react-router';
+import { render } from 'react-dom';
+import { createStore } from 'redux';
+import rootReducer from './reducers/index';
 import Root from './components/Root';
+import Api from './Api';
 
-ReactDOM.render(
-  <Router history={hashHistory}>
-    <Route path='/' component={Root}>
-    </Route>
-  </Router>
-  , document.getElementById('root'));
+Api.search('', (projects) => {
+  const initialState = {
+    projects,
+    searchKeyword: ''
+  }
+
+  let enhancers = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
+
+  let store = createStore(rootReducer, initialState, enhancers);
+
+  console.log(store.getState());
+
+  render(
+    <Root store={store} />,
+    document.getElementById('root')
+  )
+});

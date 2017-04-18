@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 import { debounce } from '../Util';
-import Api from './Api';
+import Api from '../Api';
 import '../scss/Grid.scss';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 let MAX_PROJECTS = 40;
-
 
 
 export default class Search extends Component {
@@ -40,11 +39,6 @@ export default class Search extends Component {
     this.setState({ keyword })
     this.updateGrid(keyword);
   }
-
-
-
-
-
 
   render() {
     return (
