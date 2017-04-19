@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import '../scss/App.scss';
 import Grid from './Grid';
+import { connect } from 'react-redux';
 
-export default class App extends Component {
+class App extends Component {
 
 
   render() {
@@ -23,3 +24,14 @@ class GradientOverlay extends Component {
     )
   }
 }
+
+let mapStateToProps = (state) => {
+  return {
+    projects: state.projects,
+    keyword: state.keyword
+  }
+}
+
+let ConnectedApp = connect(mapStateToProps)(App);
+
+export default ConnectedApp;

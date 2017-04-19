@@ -3,16 +3,16 @@ import { debounce } from '../Util';
 import Api from '../Api';
 import '../scss/Grid.scss';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { setSearchKeyword } from '../actions/index';
+import { connect } from 'react-redux';
 
 let MAX_PROJECTS = 40;
 
-
-export default class Search extends Component {
+class Grid extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      projects: [],
-      keyword: ''
+      projects: []
     }
 
     this.handleSearchInput = this.handleSearchInput.bind(this);
@@ -25,7 +25,7 @@ export default class Search extends Component {
   }
 
   updateGrid() {
-    Api.search(this.state.keyword, (projects) => {
+    Api.search(this.props.searchKeyword, (projects) => {
       this.setState({
         projects: projects.slice(0, MAX_PROJECTS)
       });
@@ -36,11 +36,14 @@ export default class Search extends Component {
   handleSearchInput(e) {
     const keyword = e.target.value;
 
-    this.setState({ keyword })
+
+    this.props.setSearchKeyword(keyword);
+
     this.updateGrid(keyword);
   }
 
   render() {
+
     return (
       <div className="container">
         <div className="search-wrapper">
@@ -50,7 +53,7 @@ export default class Search extends Component {
               id="search"
               type='text'
               placeholder='Search Projects'
-              value={this.state.keyword}
+              value={ this.props.searchKeyword }
               onChange={this.handleSearchInput}
               autoComplete="off"
               type="search"/>
@@ -78,3 +81,22 @@ export default class Search extends Component {
     )
   }
 }
+
+let mapStateToProps = (state) => {
+  return {
+    projects: state.projects,
+    searchKeyword: state.searchKeyword
+  }
+}
+
+let mapDispatchToProps = (dispatch) => {
+  return {
+    setSearchKeyword: (k) => {
+      dispatch(setSearchKeyword(k));
+    }
+  }
+}
+
+let ConnectedGrid = connect(mapStateToProps, mapDispatchToProps)(Grid)
+
+export default ConnectedGrid;
