@@ -64,7 +64,7 @@ class Grid extends Component {
             transitionName="project"
             transitionEnterTimeout={800}
             transitionLeaveTimeout={800}>
-            { this.state.projects.map((project, i) => (
+            { this.props.projects.map((project, i) => (
 
                 <div className="project" key={i}>
                   <div className="project-image"></div>
@@ -82,9 +82,15 @@ class Grid extends Component {
   }
 }
 
+let filterProjects = (projects, keyword) => {
+  return projects.filter((p) => {
+    return p.name.indexOf(keyword) !== -1;
+  })
+}
+
 let mapStateToProps = (state) => {
   return {
-    projects: state.projects,
+    projects: filterProjects(state.projects, state.searchKeyword),
     searchKeyword: state.searchKeyword
   }
 }
