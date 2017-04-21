@@ -1,4 +1,4 @@
-let debounce = function(func, wait, immediate) {
+let debounce = (func, wait, immediate) => {
   var timeout;
   return function() {
       var context = this, args = arguments;
@@ -12,6 +12,10 @@ let debounce = function(func, wait, immediate) {
       if (callNow) func.apply(context, args);
     };
 };
+
+let formatName = (name) => {
+  return name.split(' ').join('-');
+}
 
 export { debounce }
 

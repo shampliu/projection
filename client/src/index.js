@@ -15,8 +15,6 @@ Api.search('', (projects) => {
 
   let store = createStore(rootReducer, initialState, enhancers);
 
-  console.log('initial state is', store.getState());
-
   render(
     <Root store={store} />,
     document.getElementById('root')

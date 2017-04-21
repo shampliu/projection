@@ -16,7 +16,7 @@ label {
     font-weight: bold;
     padding-right: 0.8em;
     // opacity: 0.4;
-    color: #fff;
+    color: #272727;
 
     &:focus, &:active {
       outline: none;
@@ -55,14 +55,14 @@ label {
         padding: 10px;
 
         h3.project-name {
-          color: whitesmoke;
+          color: #272727; 
           margin-bottom: 10px;
           font-size: 1.4em;
 
         }
 
         .project-description {
-          color: white;
+          color: #5e5e5e;
         }
       }
 
